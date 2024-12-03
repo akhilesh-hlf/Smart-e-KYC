@@ -1,0 +1,16 @@
+{
+  "name": "ipfs_exp2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "file_ipfs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ipfs": "^0.66.0",
+    "ipfs-http-client": "^50.1.2"
+  }
+}
