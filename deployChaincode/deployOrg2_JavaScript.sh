@@ -5,7 +5,6 @@ chaincodeInfo() {
   export CC_RUNTIME_LANGUAGE="node"
   export CC_VERSION="1"
   export CC_SRC_PATH=../chaincodes/javascript
-  #export CC_NAME="chitfundjs"
   export CC_NAME="eKYCjs"
   export CC_SEQUENCE="1"
 
@@ -65,8 +64,7 @@ approveForMyOrg2() {
 
 insertTransaction() {
 
-  #peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:9051 --tlsRootCertFiles $PEER0_ORG2_CA -c '{"function": "createChit", "Args":["CHIT102","Ambuja","corporate","CG04123456", "ddrrn9705a"]}'
-  peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:9051 --tlsRootCertFiles $PEER0_ORG2_CA -c '{"function": "createChit", "Args":["eKYC102","Ambuja","corporate","CG04123456", "ddrrn9705a", "ZZZZZ", "WWWWW", "YYYY"]}'
+  peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:9051 --tlsRootCertFiles $PEER0_ORG2_CA -c '{"function": "createKYC", "Args":["eKYC102","Ambuja","corporate","CG04123456", "ddrrn9705a", "ZZZZZ", "WWWWW", "YYYY"]}'
 
   sleep 2
 }
@@ -84,7 +82,7 @@ readTransaction() {
 	#done
   
   
-  # Query all Chit Fund Company Details
+
 
   #peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"Args":["queryAllChits"]}'
 
@@ -98,8 +96,7 @@ readTransaction() {
 	# done
 #--------------------End of  Smart e-KYC used code --------------------------------#
 
-  # Query Chit Fund by KYC Id
-  # Query Chit Fund by KYC Id
+
   random_numbers=$(shuf -i 1-100000 -n 1000)  #Serch 100,200,300,...,1000 records from the 10000 records inserted between 1 to 100000
   #random_numbers=$(shuf -i 1-5-n 1)
   for KYC_NUM in $random_numbers
