@@ -5,7 +5,6 @@ chaincodeInfo() {
   export CC_RUNTIME_LANGUAGE="node"
   export CC_VERSION="1"
   export CC_SRC_PATH=../chaincodes/javascript
-  #export CC_NAME="chitfundjs"
   export CC_NAME="eKYCjs"
   export CC_SEQUENCE="1"
 
@@ -94,8 +93,8 @@ insertTransaction() {
 	# while [ $c -le 10 ];
 	# do 
 
-  # #peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA -c '{"function": "createChit", "Args":["CHIT101","TechMahindra","co-operative","MH04123456", "mhmob98462c"]}'
-	# peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA -c '{"function": "createChit", "Args":["eKYC101","AKHILESH SHARMA","BBBBB","05-09-2002", "ICG1234567", "CGRR5678W123", "H.N.-128, GE ROAD XXXX 495001", "1234567890"]}'
+  # #peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA -c '{"function": "createeKYC", "Args":["eKYC101","TechMahindra","co-operative","MH04123456", "mhmob98462c"]}'
+	# peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA -c '{"function": "createeKYC", "Args":["eKYC101","AKHILESH SHARMA","BBBBB","05-09-2002", "ICG1234567", "CGRR5678W123", "H.N.-128, GE ROAD XXXX 495001", "1234567890"]}'
 	# (( c++ ))
 	# done
   #---------------------End of Code Used in smart e-KYC -------------------------------#
@@ -105,30 +104,30 @@ insertTransaction() {
   for KYC_NUM in $random_numbers
   do
     KYC="eKYC${KYC_NUM}"
-    peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA -c '{"function": "createChit", "Args":["'"$KYC"'","AKHILESH SHARMA","BBBBB","05-09-2002", "ICG1234567", "CGRR5678W123", "H.N.-128, GE ROAD XXXX 495001", "1234567890"]}'
+    peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA -c '{"function": "createeKYC", "Args":["'"$KYC"'","AKHILESH SHARMA","BBBBB","05-09-2002", "ICG1234567", "CGRR5678W123", "H.N.-128, GE ROAD XXXX 495001", "1234567890"]}'
   done
   sleep 2
 }
 #insertTransaction() {
 
-  #peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA -c '{"function": "createChit", "Args":[]}'
+  #peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA -c '{"function": "createeKYC", "Args":[]}'
 
   #sleep 2
 #}
 readTransaction() {
   echo "Reading  transactions"
   #-------All lines are commentted in smart eKYC-------#
-  # Query all Chit Fund Company Records 
+  # Query all eKYC Records 
 
-  #peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"Args":["queryAllChits"]}'
+  #peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"Args":["queryAlleKYCs"]}'
 
-  # Query Chit Fund by KYC Id
+  # Query User by KYC Id
   random_numbers=$(shuf -i 1-100000 -n 10)  #Serch 100,200,300,...,1000 records from the 10000 records inserted between 1 to 100000
   #random_numbers=$(shuf -i 1-5 -n 5)
   for KYC_NUM in $random_numbers
   do
     KYC="eKYC${KYC_NUM}"
-    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryChit","Args":["'"$KYC"'"]}'
+    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryeKYC","Args":["'"$KYC"'"]}'
   done
   #echo "Transactions save successfully"
 }
