@@ -84,14 +84,14 @@ readTransaction() {
   
 
 
-  #peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"Args":["queryAllChits"]}'
+  #peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"Args":["queryAlleKYC"]}'
 
 #-------------------- Smart e-KYC used code --------------------------------#
-  # Query Chit Fund by Chit Id
+  # Query User by eKYC Id
   # 	c=1
 	# while [ $c -le 1	 ];
 	# do 
-  # 	peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryChit","Args":["eKYC101"]}'
+  # 	peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryeKYC","Args":["eKYC101"]}'
   # 	(( c++ ))
 	# done
 #--------------------End of  Smart e-KYC used code --------------------------------#
@@ -102,7 +102,7 @@ readTransaction() {
   for KYC_NUM in $random_numbers
   do
     KYC="eKYC${KYC_NUM}"
-    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryChit","Args":["'"$KYC"'"]}'
+    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "query","Args":["'"$KYC"'"]}'
   done
 
   
